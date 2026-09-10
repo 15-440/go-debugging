@@ -1,18 +1,16 @@
 package main
 
-const CloseMessage = "CLOSE"
-
 type Client struct {
-	requests  chan<- string
-	responses <-chan string
+	requests  chan Message
+	responses chan string
 }
 
-func NewClient(requests chan<- string, responses <-chan string) *Client {
+func NewClient(requests chan Message, responses chan string) *Client {
 	return &Client{requests: requests, responses: responses}
 }
 
 func (c *Client) Send(message string) {
-	c.requests <- message
+	c.requests <- Message{Type: Data, Payload: message}
 }
 
 func (c *Client) Receive() string {
@@ -20,5 +18,5 @@ func (c *Client) Receive() string {
 }
 
 func (c *Client) Close() {
-	c.Send(CloseMessage)
+	c.requests <- Message{Type: Close}
 }
