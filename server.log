@@ -1,0 +1,5 @@
+2026/09/11 16:22:28 server received type=0 payload="hello"
+2026/09/11 16:22:28 server sending response="ACK:hello"
+2026/09/11 16:22:28 server received type=0 payload="world"
+2026/09/11 16:22:28 server sending response="ACK:world"
+2026/09/11 16:22:28 server received type=1 payload=""
